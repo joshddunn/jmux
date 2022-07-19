@@ -1,0 +1,16 @@
+{
+  "name": "jmux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jmux.js",
+  "type": "module",
+  "scripts": {
+    "start": "node jmux.js start",
+    "stop": "node jmux.js stop"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@jcoreio/kexec": "^4.0.0"
+  }
+}
