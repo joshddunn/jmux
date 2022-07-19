@@ -1,4 +1,4 @@
-// https://man7.org/linux/man-pages/man1/tmux.1.html
+#!/usr/bin/env node
 
 import kexec from "@jcoreio/kexec";
 import { exec } from 'child_process'
