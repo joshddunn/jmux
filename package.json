@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "type": "module",
   "scripts": {
-    "start": "node lib/index.js start -f ./jmux.json",
-    "stop": "node lib/index.js stop -f ./jmux.json",
+    "start": "node lib/index.js start -f ./jmux.yml",
+    "stop": "node lib/index.js stop -f ./jmux.yml",
     "jmux": "node lib/index.js",
     "local": "sudo npm i -g && jmux"
   },
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@jcoreio/kexec": "^4.0.0",
-    "commander": "^9.4.0"
+    "commander": "^9.4.0",
+    "yaml": "^2.1.1"
   }
 }
