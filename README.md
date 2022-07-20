@@ -31,13 +31,13 @@ env: # session name
 ## Layouts
 
 ### Default
-< insert screenshot >
+![Screen Shot 2022-07-20 at 2 22 07 AM](https://user-images.githubusercontent.com/7513070/179911297-b6754c16-0825-414c-94b2-facd207ae1ca.png)
 
 ### Rows
-< insert screenshot >
+![Screen Shot 2022-07-20 at 2 22 21 AM](https://user-images.githubusercontent.com/7513070/179911303-8b191ba4-de6d-473f-bc94-0a585d5d1148.png)
 
 ### Columns
-< insert screenshot >
+![Screen Shot 2022-07-20 at 2 22 31 AM](https://user-images.githubusercontent.com/7513070/179911314-28eb8ba7-ab9c-4053-88ef-3804048316e5.png)
 
 ## Resources
 
