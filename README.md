@@ -1,3 +1,44 @@
-WIP
+# jmux
 
-https://man7.org/linux/man-pages/man1/tmux.1.html
+`jmux` is a command line tool that automates building tmux sessions.
+
+## Installation
+
+< insert description >
+
+## Configuration
+
+By default, `jmux` will try to load the configuration defined in `~/.jmux.yml`. Alternatively, you can use a file in a different location using the `-f` flag.
+
+Here's an example configuration. Multiple session configurations can exist within `~/.jmux.yml`.
+
+```yaml
+env: # session name
+  dir: ~/Desktop # directory
+  zeroIndex: <true|false> # start window numbering at 0 when true or 1 when false
+  windows:
+    - name: <window name>
+      dir: ~/Desktop # optional directory, will use session directory if undefined
+      layout: <default|rows|columns> # optional layout, will use default if undefined
+      splitPercent: 35 # size of the sidebar (only used for the default layout)
+      panes:
+        - dir: ~/Desktop # optional directory, will use window directory if undefined
+          command: nvim # command that will be executed (nvim will be open)
+        - dir: ~/Desktop
+          placeholder: nvim # command that will not be executed (nvim won't be open)
+```
+
+## Layouts
+
+### Default
+< insert screenshot >
+
+### Rows
+< insert screenshot >
+
+### Columns
+< insert screenshot >
+
+## Resources
+
+[tmux manual](https://man7.org/linux/man-pages/man1/tmux.1.html)
