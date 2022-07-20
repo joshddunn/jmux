@@ -14,15 +14,15 @@ Here's an example configuration. Multiple session configurations can exist withi
 
 ```yaml
 env: # session name
-  dir: ~/Desktop # directory
+  dir: ~/Desktop # session directory
   zeroIndex: <true|false> # start window numbering at 0 when true or 1 when false
   windows:
-    - name: <window name>
-      dir: ~/Desktop # optional directory, will use session directory if undefined
-      layout: <default|rows|columns> # optional layout, will use default if undefined
+    - name: desktop # window name
+      dir: ~/Desktop # optional directory -- if undefined, the session directory is used
+      layout: <default|rows|columns> # optional layout -- if undefined, the default layout is used
       splitPercent: 35 # size of the sidebar (only used for the default layout)
       panes:
-        - dir: ~/Desktop # optional directory, will use window directory if undefined
+        - dir: ~/Desktop # optional directory -- if undefined, the window directory is used
           command: nvim # command that will be executed (nvim will be open)
         - dir: ~/Desktop
           placeholder: nvim # command that will not be executed (nvim won't be open)
