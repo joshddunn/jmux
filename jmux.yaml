@@ -1,0 +1,23 @@
+env:
+  dir: ~/Desktop
+  zeroIndex: true
+  windows:
+    - name: recipes
+      panes:
+        - dir: ~/Documents/recipes
+          command: nvim
+    - name: code
+      dir: ~/code
+      panes:
+        -
+        -
+        - dir: ~/Documents
+          placeholder: make start
+        -
+    - name: half
+      splitPercent: 50
+      panes:
+        -
+        -
+        - dir: ~/Documents
+        -
