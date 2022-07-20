@@ -20,7 +20,7 @@ env: # session name
     - name: desktop # window name
       dir: ~/Desktop # optional directory -- if undefined, the session directory is used
       layout: <default|rows|columns> # optional layout -- if undefined, the default layout is used
-      splitPercent: 35 # size of the sidebar (only used for the default layout)
+      splitPercent: 35 # optional default layout sidebar size -- if undefined, 35 is used
       panes:
         - dir: ~/Desktop # optional directory -- if undefined, the window directory is used
           command: nvim # command that will be executed (nvim will be open)
