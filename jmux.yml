@@ -21,3 +21,21 @@ env:
         -
         - dir: ~/Documents
         -
+    - name: rows
+      layout: rows
+      dir: ~/code
+      panes:
+        -
+        -
+        - dir: ~/Documents
+          placeholder: make start
+        -
+    - name: columns
+      layout: columns
+      dir: ~/code
+      panes:
+        -
+        -
+        - dir: ~/Documents
+          placeholder: make start
+        -
