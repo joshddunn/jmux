@@ -2,14 +2,18 @@
   "name": "jmux",
   "version": "1.0.0",
   "description": "",
-  "main": "jmux.js",
+  "main": "lib/index.js",
   "type": "module",
   "scripts": {
-    "start": "node jmux.js start",
-    "stop": "node jmux.js stop"
+    "start": "JMUX_FILE_PATH=./jmux.json node lib/index.js start",
+    "stop": "JMUX_FILE_PATH=./jmux.json node lib/index.js stop",
+    "local": "sudo npm i -g && jmux"
   },
   "author": "",
   "license": "ISC",
+  "bin": {
+    "jmux": "./lib/index.js"
+  },
   "dependencies": {
     "@jcoreio/kexec": "^4.0.0"
   }
