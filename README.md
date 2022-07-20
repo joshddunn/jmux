@@ -10,7 +10,7 @@
 
 By default, `jmux` will try to load the configuration defined in `~/.jmux.yml`. Alternatively, you can use a file in a different location using the `-f` flag.
 
-Here's an example configuration. Multiple session configurations can exist within `~/.jmux.yml`.
+Multiple session configurations can exist within `~/.jmux.yml`. Below is a guide for configuring `jmux`.
 
 ```yaml
 env: # session name
