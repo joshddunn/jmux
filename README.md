@@ -28,6 +28,16 @@ env: # session name
           placeholder: nvim # command that will not be executed (nvim won't be open)
 ```
 
+## Usage
+
+`jmux start <session>` will start and attach to a specific session.
+
+`jmux start all` will start all sessions and attach to the first session defined in the configuration file.
+
+`jmux stop <session>` will stop a specific session.
+
+`jmux stop all` will stop all sessions defined in the configuration file.
+
 ## Layouts
 
 ### Default
