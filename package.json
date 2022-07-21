@@ -10,7 +10,7 @@
     "jmux": "node lib/index.js",
     "local": "sudo npm i -g && jmux"
   },
-  "author": "",
+  "author": "Josh Dunn",
   "license": "ISC",
   "bin": {
     "jmux": "./lib/index.js"
