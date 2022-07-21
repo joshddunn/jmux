@@ -1,7 +1,7 @@
 {
   "name": "@joshddunn/jmux",
   "version": "0.1.0",
-  "description": "",
+  "description": "Automate building new tmux sessions.",
   "main": "lib/index.js",
   "type": "module",
   "scripts": {
