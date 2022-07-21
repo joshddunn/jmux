@@ -8,9 +8,9 @@
 
 ## Configuration
 
-By default, `jmux` will try to load the configuration defined in `~/.jmux.yml`. Alternatively, you can use a file in a different location using the `-f` flag.
+By default, `jmux` will try to load the configuration defined in `~/.jmux.yaml`. Alternatively, you can use a file in a different location using the `-f` flag.
 
-Multiple session configurations can exist within `~/.jmux.yml`. Below is a guide for configuring `jmux`.
+Multiple session configurations can exist within `~/.jmux.yaml`. Below is a guide for configuring `jmux`.
 
 ```yaml
 env: # session name
