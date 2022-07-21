@@ -4,7 +4,7 @@
 
 ## Installation
 
-< insert description >
+`npm install -g @joshddunn/jmux`
 
 ## Configuration
 
