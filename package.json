@@ -1,6 +1,7 @@
 {
   "name": "@joshddunn/jmux",
-  "version": "0.2.0",
+  "repository": "github:joshddunn/jmux",
+  "version": "0.3.0",
   "description": "Automate building new tmux sessions.",
   "main": "lib/index.js",
   "type": "module",

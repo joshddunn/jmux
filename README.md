@@ -15,7 +15,8 @@ Multiple session configurations can exist within `~/.jmux.yaml`. Below is a guid
 ```yaml
 env: # session name
   dir: ~/Desktop # session directory
-  zeroIndex: <true|false> # start window numbering at 0 when true or 1 when false
+  zeroIndex: <true|false> # window numbering starts at 0 when true or 1 when false
+  selectWindow: 1 # open specific window on start
   windows:
     - name: desktop # window name
       dir: ~/Desktop # optional directory -- if undefined, the session directory is used
