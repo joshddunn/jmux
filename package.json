@@ -12,6 +12,7 @@
     "start": "npm run build && node dist/index.js start -f ./jmux.yaml",
     "stop": "npm run build && node dist/index.js stop -f ./jmux.yaml",
     "jmux": "npm run build && node dist/index.js",
+    "test": "jest",
     "local": "sudo npm i -g && jmux"
   },
   "author": "Josh Dunn",
@@ -22,7 +23,10 @@
     "yaml": "^2.1.1"
   },
   "devDependencies": {
+    "@types/jest": "^28.1.6",
     "@types/node": "^18.6.2",
+    "jest": "^28.1.3",
+    "ts-jest": "^28.0.7",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
   }
