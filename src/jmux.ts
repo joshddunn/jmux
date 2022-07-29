@@ -21,24 +21,24 @@ import {
 } from "./tmux"
 
 interface Config {
-  zeroIndex?: boolean;
   windows: WindowConfig[];
-  dir: string;
-  selectWindow: number;
+  dir?: string;
+  selectWindow?: number;
+  zeroIndex?: boolean;
 }
 
 interface WindowConfig {
-  panes: PaneConfig[];
   name: string;
-  dir: string;
-  layout: string;
-  splitPercent: number;
+  dir?: string;
+  layout?: string;
+  panes?: PaneConfig[];
+  splitPercent?: number;
 }
 
 interface PaneConfig {
-  dir: string;
-  command: string;
-  placeholder: string;
+  command?: string;
+  dir?: string;
+  placeholder?: string;
 }
 
 function tmuxExecSessions() {
@@ -121,7 +121,7 @@ export function stopAll(config: string): void {
   })
 }
 
-export function defaultLayout(i: number, paneDir: string, panesCount: number, configSplitPercent: number): string[] {
+export function defaultLayout(i: number, paneDir: string, panesCount: number, configSplitPercent: number = 35): string[] {
   const command = []
 
   switch (i) {
@@ -130,7 +130,7 @@ export function defaultLayout(i: number, paneDir: string, panesCount: number, co
       command.push(tmuxKillPane(1))
       break
     case 1:
-      const splitPercent = undefinedFallback(configSplitPercent, 35)
+      const splitPercent = undefinedFallback(configSplitPercent)
       command.push(tmuxSplitWindow(paneDir, { type: "horizontal", percent: splitPercent }))
       break
     default:
@@ -163,11 +163,12 @@ export function buildSession(name: string, config: Config): string {
   command.push(tmuxNewSession(name))
 
   config.windows.forEach((windowConfig) => {
-    const panesCount = windowConfig.panes.length
+    const panes = windowConfig.panes || []
+    const panesCount = panes.length
 
     command.push(tmuxNewWindow(windowConfig.name))
 
-    windowConfig.panes.forEach((paneConfig, i) => {
+    panes.forEach((paneConfig, i) => {
       paneConfig = paneConfig || {}
 
       const paneDir = undefinedFallback(paneConfig.dir, windowConfig.dir, config.dir, os.homedir())
