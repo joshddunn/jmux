@@ -1,7 +1,7 @@
 {
   "name": "@joshddunn/jmux",
   "repository": "github:joshddunn/jmux",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Automate building new tmux sessions.",
   "main": "./dist/index.js",
   "bin": {
