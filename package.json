@@ -7,7 +7,6 @@
   "bin": {
     "jmux": "./dist/index.js"
   },
-  "type": "module",
   "scripts": {
     "build": "tsc -p .",
     "start": "npm run build && node dist/index.js start -f ./jmux.yaml",
