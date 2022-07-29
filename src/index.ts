@@ -7,7 +7,7 @@ import {
   startAll,
   stop,
   stopAll,
-} from "./jmux.js"
+} from "./jmux"
 
 const program = new Command()
 

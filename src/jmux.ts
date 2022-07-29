@@ -3,7 +3,7 @@ import kexec from "@jcoreio/kexec"
 import YAML from "yaml"
 import { execSync } from 'child_process'
 import { readFileSync, existsSync } from "fs"
-import { undefinedFallback } from "./utils.js"
+import { undefinedFallback } from "./utils"
 import {
   tmuxCommand,
   tmuxSessions,
@@ -18,7 +18,7 @@ import {
   tmuxSelectWindow,
   tmuxMoveWindow,
   tmuxSendKeys,
-} from "./tmux.js"
+} from "./tmux"
 
 function tmuxExecSessions() {
   try {
@@ -28,7 +28,8 @@ function tmuxExecSessions() {
   }
 }
 
-export function getConfig(file) {
+// figure out return type
+export function getConfig(file: string) {
   const buffer = readFile(file)
 
   if (!buffer) {
@@ -46,12 +47,14 @@ export function getConfig(file) {
   return config
 }
 
-export function readFile(file) {
+// figure out return type
+export function readFile(file: string) {
   const filePath = file || `${os.homedir()}/.jmux.yaml`
   return existsSync(filePath) ? readFileSync(filePath, 'utf8') : null
 }
 
-export function parseYAML(buffer) {
+// figure out return type
+export function parseYAML(buffer: string) {
   try {
     return YAML.parse(buffer)
   } catch (_) {
@@ -59,7 +62,7 @@ export function parseYAML(buffer) {
   }
 }
 
-export function start(name, config, attach = true) {
+export function start(name: string, config: Config, attach: boolean = true): void {
   const result = tmuxExecSessions()
 
   if (!result.includes(`${name}:`)) {
@@ -71,7 +74,7 @@ export function start(name, config, attach = true) {
   }
 }
 
-export function startAll(config) {
+export function startAll(config: { [key: string]: Config }): void {
   const envs = Object.keys(config)
 
   envs.forEach((env) => {
@@ -81,7 +84,7 @@ export function startAll(config) {
   kexec(tmuxExecAttachSession(envs[0]))
 }
 
-export function stop(name) {
+export function stop(name: string): void {
   const result = tmuxExecSessions()
 
   if (result.includes(`${name}:`)) {
@@ -89,7 +92,7 @@ export function stop(name) {
   }
 }
 
-export function stopAll(config) {
+export function stopAll(config: string): void {
   const envs = Object.keys(config)
 
   envs.forEach((env) => {
@@ -97,7 +100,7 @@ export function stopAll(config) {
   })
 }
 
-export function defaultLayout(i, paneDir, panesCount, configSplitPercent) {
+export function defaultLayout(i: number, paneDir: string, panesCount: number, configSplitPercent: number): string[] {
   const command = []
 
   switch (i) {
@@ -107,32 +110,53 @@ export function defaultLayout(i, paneDir, panesCount, configSplitPercent) {
       break
     case 1:
       const splitPercent = undefinedFallback(configSplitPercent, 35)
-      command.push(tmuxSplitWindow(paneDir, { type: "horizontal", size: `${splitPercent}%` }))
+      command.push(tmuxSplitWindow(paneDir, { type: "horizontal", percent: splitPercent }))
       break
     default:
       const percent = panePercent(i, panesCount)
-      command.push(tmuxSplitWindow(paneDir, { type: "vertical", size: `${percent}%` }))
+      command.push(tmuxSplitWindow(paneDir, { type: "vertical", percent: percent }))
   }
 
   return command
 }
 
-export function barsLayout(type, i, paneDir, panesCount) {
+export function barsLayout(type: string, i: number, paneDir: string, panesCount: number): string[] {
   const command = []
 
   const percent = panePercent(i, panesCount)
-  command.push(tmuxSplitWindow(paneDir, { type: type, size: `${percent}%` }))
+  command.push(tmuxSplitWindow(paneDir, { type: type, percent: percent }))
 
   if (i === 0) command.push(tmuxKillPane(1))
 
   return command
 }
 
-export function panePercent(i, panesCount) {
+export function panePercent(i: number, panesCount: number): number {
   return Math.ceil(100 - 100 / (panesCount - i + 1))
 }
 
-export function buildSession(name, config) {
+interface Config {
+  zeroIndex?: boolean;
+  windows: WindowConfig[];
+  dir: string;
+  selectWindow: number;
+}
+
+interface WindowConfig {
+  panes: PaneConfig[];
+  name: string;
+  dir: string;
+  layout: string;
+  splitPercent: number;
+}
+
+interface PaneConfig {
+  dir: string;
+  command: string;
+  placeholder: string;
+}
+
+export function buildSession(name: string, config: Config): string {
   const command = []
   const index = config.zeroIndex ? 0 : 1
 
