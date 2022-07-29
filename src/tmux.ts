@@ -1,3 +1,8 @@
+interface SplitWindowOptions {
+  type?: string;
+  percent?: number;
+}
+
 export function tmuxCommand(command: string[]): string {
   return `tmux ${command.join(" \\; ")} \\;`
 }
@@ -20,11 +25,6 @@ export function tmuxNewSession(sessionName: string): string {
 
 export function tmuxNewWindow(windowName: string): string {
   return `new-window -n ${windowName}`
-}
-
-interface SplitWindowOptions {
-  type?: string;
-  percent?: number;
 }
 
 export function tmuxSplitWindow(startDirectory: string, { type = "vertical", percent = 0 }: SplitWindowOptions = {}): string {

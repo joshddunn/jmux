@@ -20,6 +20,27 @@ import {
   tmuxSendKeys,
 } from "./tmux"
 
+interface Config {
+  zeroIndex?: boolean;
+  windows: WindowConfig[];
+  dir: string;
+  selectWindow: number;
+}
+
+interface WindowConfig {
+  panes: PaneConfig[];
+  name: string;
+  dir: string;
+  layout: string;
+  splitPercent: number;
+}
+
+interface PaneConfig {
+  dir: string;
+  command: string;
+  placeholder: string;
+}
+
 function tmuxExecSessions() {
   try {
     return execSync(tmuxSessions()).toString()
@@ -133,27 +154,6 @@ export function barsLayout(type: string, i: number, paneDir: string, panesCount:
 
 export function panePercent(i: number, panesCount: number): number {
   return Math.ceil(100 - 100 / (panesCount - i + 1))
-}
-
-interface Config {
-  zeroIndex?: boolean;
-  windows: WindowConfig[];
-  dir: string;
-  selectWindow: number;
-}
-
-interface WindowConfig {
-  panes: PaneConfig[];
-  name: string;
-  dir: string;
-  layout: string;
-  splitPercent: number;
-}
-
-interface PaneConfig {
-  dir: string;
-  command: string;
-  placeholder: string;
 }
 
 export function buildSession(name: string, config: Config): string {
