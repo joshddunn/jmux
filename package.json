@@ -1,14 +1,19 @@
 {
   "name": "@joshddunn/jmux",
   "repository": "github:joshddunn/jmux",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Automate building new tmux sessions.",
+  "engines": {
+    "npm": ">=8.0.0 <9.0.0",
+    "node": ">=18.0.0 <19.0.0"
+  },
   "main": "./dist/index.js",
   "bin": {
     "jmux": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc -p .",
+    "typecheck": "npm run build --noEmit",
     "start": "npm run build && node dist/index.js start -f ./jmux.yaml",
     "stop": "npm run build && node dist/index.js stop -f ./jmux.yaml",
     "jmux": "npm run build && node dist/index.js",
@@ -18,7 +23,6 @@
   "author": "Josh Dunn",
   "license": "ISC",
   "dependencies": {
-    "@jcoreio/kexec": "^4.0.0",
     "commander": "^9.4.0",
     "yaml": "^2.1.1"
   },

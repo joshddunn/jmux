@@ -31,23 +31,30 @@ env: # session name
 
 ## Usage
 
-`jmux start <session>` will start and attach to a specific session.
+`jmux start <session>` will output a command to start a specific session.
 
-`jmux start all` will start all sessions and attach to the first session defined in the configuration file.
+`jmux stop <session>` will output a command to stop a specific session.
 
-`jmux stop <session>` will stop a specific session.
+Add the following to your zshrc file to automatically evaluate the command with `mux`
 
-`jmux stop all` will stop all sessions defined in the configuration file.
+```
+mux() {
+  eval $(jmux $@)
+}
+```
 
 ## Layouts
 
 ### Default
+
 ![Screen Shot 2022-07-20 at 2 22 07 AM](https://user-images.githubusercontent.com/7513070/179911297-b6754c16-0825-414c-94b2-facd207ae1ca.png)
 
 ### Rows
+
 ![Screen Shot 2022-07-20 at 2 22 21 AM](https://user-images.githubusercontent.com/7513070/179911303-8b191ba4-de6d-473f-bc94-0a585d5d1148.png)
 
 ### Columns
+
 ![Screen Shot 2022-07-20 at 2 22 31 AM](https://user-images.githubusercontent.com/7513070/179911314-28eb8ba7-ab9c-4053-88ef-3804048316e5.png)
 
 ## Resources
