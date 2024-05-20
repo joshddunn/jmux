@@ -1,4 +1,5 @@
 export interface Config {
+  name: string;
   windows: WindowConfig[];
   dir?: string;
   selectWindow?: number;

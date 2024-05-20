@@ -13,15 +13,18 @@ program
   .command("start")
   .argument("<string>", "session you want to start")
   .option("-f, --file <string>", "file path of configuration file")
-  .action((env, options) => {
+  .action((sessionName, options) => {
     const config = getConfig(options.file);
+    const configForSession = config.find((x) => x.name === sessionName);
 
     if (!config) {
       process.exit(1);
-    } else if (config[env]) {
-      console.log(tmux.buildCommand(start(env, config[env])));
+    } else if (configForSession) {
+      console.log(tmux.buildCommand(start(configForSession)));
     } else {
-      console.error(`No such env \`${env}\` in configuration file`);
+      console.error(
+        `Config for \`${sessionName}\` is missing in configuration file`
+      );
       process.exit(1);
     }
   });
@@ -30,15 +33,18 @@ program
   .command("stop")
   .argument("<string>", "session you want to stop")
   .option("-f, --file <string>", "file path of configuration file")
-  .action((env, options) => {
+  .action((sessionName, options) => {
     const config = getConfig(options.file);
+    const configForSession = config.find((x) => x.name === sessionName);
 
     if (!config) {
       process.exit(1);
-    } else if (config[env]) {
-      console.log(tmux.buildCommand([stop(env)]));
+    } else if (configForSession) {
+      console.log(tmux.buildCommand([stop(configForSession.name)]));
     } else {
-      console.error(`No such env \`${env}\` in configuration file`);
+      console.error(
+        `Config for \`${sessionName}\` is missing in configuration file`
+      );
       process.exit(1);
     }
   });

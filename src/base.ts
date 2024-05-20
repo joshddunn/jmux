@@ -2,14 +2,14 @@ import os from "os";
 import * as tmux from "./tmux";
 import { Config, Split, WindowLayout } from "./types";
 
-export const start = (name: string, config: Config): string[] => {
+export const start = (config: Config): string[] => {
   const result = tmux.getCurrentSessions();
 
-  if (!result.includes(`${name}:`)) {
-    return buildSession(name, config);
+  if (!result.includes(`${config.name}:`)) {
+    return buildSession(config);
   }
 
-  return [tmux.attachSession(name)];
+  return [tmux.attachSession(config.name)];
 };
 
 export const stop = (name: string): string | undefined => {
@@ -76,11 +76,11 @@ const panePercent = (index: number, panesCount: number): number => {
   return Math.ceil(100 - 100 / (panesCount - index + 1));
 };
 
-const buildSession = (name: string, config: Config): string[] => {
+const buildSession = (config: Config): string[] => {
   const baseIndex: number = config.zeroIndex ? 0 : 1;
   const command: string[] = [];
 
-  command.push(tmux.newSession(name));
+  command.push(tmux.newSession(config.name));
 
   config.windows.forEach((windowConfig) => {
     const panes = windowConfig.panes || [];
