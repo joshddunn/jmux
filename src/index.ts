@@ -10,9 +10,24 @@ const program = new Command();
 program.description("Automate starting your tmux sessions");
 
 program
+  .command("ls")
+  .description("list configured sessions")
+  .option("-f, --file <string>", "configuration file path")
+  .action((options) => {
+    const config = getConfig(options.file);
+
+    if (!config) {
+      process.exit(1);
+    } else {
+      console.log(config.map((x) => x.name).join("\n"));
+    }
+  });
+
+program
   .command("start")
-  .argument("<string>", "session you want to start")
-  .option("-f, --file <string>", "file path of configuration file")
+  .description("start configured session")
+  .argument("<string>", "session name")
+  .option("-f, --file <string>", "configuration file path")
   .action((sessionName, options) => {
     const config = getConfig(options.file);
     const configForSession = config.find((x) => x.name === sessionName);
@@ -22,17 +37,16 @@ program
     } else if (configForSession) {
       console.log(tmux.buildCommand(start(configForSession)));
     } else {
-      console.error(
-        `Config for \`${sessionName}\` is missing in configuration file`
-      );
+      console.error(`Configuration for \`${sessionName}\` not found`);
       process.exit(1);
     }
   });
 
 program
   .command("stop")
-  .argument("<string>", "session you want to stop")
-  .option("-f, --file <string>", "file path of configuration file")
+  .description("stop configured session")
+  .argument("<string>", "session name")
+  .option("-f, --file <string>", "configuration file path")
   .action((sessionName, options) => {
     const config = getConfig(options.file);
     const configForSession = config.find((x) => x.name === sessionName);
@@ -42,9 +56,7 @@ program
     } else if (configForSession) {
       console.log(tmux.buildCommand([stop(configForSession.name)]));
     } else {
-      console.error(
-        `Config for \`${sessionName}\` is missing in configuration file`
-      );
+      console.error(`Configuration for \`${sessionName}\` not found`);
       process.exit(1);
     }
   });

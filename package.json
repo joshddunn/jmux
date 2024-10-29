@@ -14,8 +14,6 @@
   "scripts": {
     "build": "tsc -p .",
     "typecheck": "npm run build --noEmit",
-    "start": "npm run build && node dist/index.js start -f ./jmux.yaml",
-    "stop": "npm run build && node dist/index.js stop -f ./jmux.yaml",
     "jmux": "npm run build && node dist/index.js",
     "test": "jest",
     "local": "sudo npm i -g && jmux"
