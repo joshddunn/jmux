@@ -31,15 +31,17 @@ env: # session name
 
 ## Usage
 
-`jmux start <session>` will output a command to start a specific session.
-
-`jmux stop <session>` will output a command to stop a specific session.
+See `jmux help` for available commands and usage.
 
 Add the following to your zshrc file to automatically evaluate the command with `mux`
 
 ```
 mux() {
-  eval $(jmux $@)
+  if [[ "$1" == "ls" ]]; then
+    jmux $@
+  else
+    eval $(jmux $@)
+  fi
 }
 ```
 
