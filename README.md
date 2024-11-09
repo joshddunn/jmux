@@ -37,11 +37,7 @@ Add the following to your zshrc file to automatically evaluate the command with 
 
 ```
 mux() {
-  if [[ "$1" == "ls" ]]; then
-    jmux $@
-  else
-    eval $(jmux $@)
-  fi
+  eval $(jmux $@ -e)
 }
 ```
 

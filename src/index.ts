@@ -13,13 +13,15 @@ program
   .command("ls")
   .description("list configured sessions")
   .option("-f, --file <string>", "configuration file path")
+  .option("-e, --eval", "output valid command for shell eval")
   .action((options) => {
     const config = getConfig(options.file);
 
     if (!config) {
       process.exit(1);
     } else {
-      console.log(config.map((x) => x.name).join("\n"));
+      const sessions = config.map((x) => x.name).join("\n");
+      console.log(options.eval ? `echo "${sessions}"` : sessions);
     }
   });
 
@@ -28,6 +30,7 @@ program
   .description("start configured session")
   .argument("<string>", "session name")
   .option("-f, --file <string>", "configuration file path")
+  .option("-e, --eval", "output valid command for shell eval")
   .action((sessionName, options) => {
     const config = getConfig(options.file);
     const configForSession = config.find((x) => x.name === sessionName);
@@ -47,6 +50,7 @@ program
   .description("stop configured session")
   .argument("<string>", "session name")
   .option("-f, --file <string>", "configuration file path")
+  .option("-e, --eval", "output valid command for shell eval")
   .action((sessionName, options) => {
     const config = getConfig(options.file);
     const configForSession = config.find((x) => x.name === sessionName);
