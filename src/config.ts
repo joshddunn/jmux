@@ -59,7 +59,9 @@ const configSchema = Joi.array()
               command: Joi.string(),
               dir: Joi.string(),
               placeholder: Joi.string(),
-            }).allow(null)
+            })
+              .xor("command", "placeholder")
+              .allow(null)
           ),
           splitPercent: Joi.number().min(1).max(99),
         })

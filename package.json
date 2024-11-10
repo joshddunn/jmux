@@ -1,7 +1,7 @@
 {
   "name": "@joshddunn/jmux",
   "repository": "github:joshddunn/jmux",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Automate building new tmux sessions.",
   "engines": {
     "npm": ">=8.0.0 <9.0.0",

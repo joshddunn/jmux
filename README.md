@@ -1,6 +1,6 @@
 # jmux
 
-`jmux` is a command line tool that automates building tmux sessions.
+`jmux` is a command line tool for building tmux sessions.
 
 ## Installation
 
@@ -8,25 +8,47 @@
 
 ## Configuration
 
-By default, `jmux` will try to load the configuration defined in `~/.jmux.yaml`. Alternatively, you can use a file in a different location using the `-f` flag.
-
-Multiple session configurations can exist within `~/.jmux.yaml`. Below is a guide for configuring `jmux`.
+The default configuration filepath is `~/.jmux.yaml`.
 
 ```yaml
-env: # session name
-  dir: ~/Desktop # session directory
-  zeroIndex: <true|false> # window numbering starts at 0 when true or 1 when false -- default false
-  selectWindow: 1 # open specific window on start
+# [required] session name
+env:
+  # [optional] session directory
+  # default: home directory
+  dir: string
+
+  # [optional] window numbering starts at 0 (true) or 1 (false)
+  # default: false
+  zeroIndex: boolean
+
+  # [optional] selected window after starting session
+  # default: 1
+  selectWindow: number
+
   windows:
-    - name: desktop # window name
-      dir: ~/Desktop # optional directory -- if undefined, the session directory is used
-      layout: <default|rows|columns> # optional layout -- if undefined, the default layout is used
-      splitPercent: 35 # optional default layout sidebar size -- if undefined, 35 is used
+    # [required] window name
+    - name: string
+
+      # [optional] window directory
+      # default: session directory
+      dir: string
+
+      # [optional] how panes will be organized within the window
+      # default: default
+      layout: <default|rows|columns>
+
+      # [optional] sidebar size when using default layout
+      # default: 35
+      splitPercent: number
+
       panes:
-        - dir: ~/Desktop # optional directory -- if undefined, the window directory is used
-          command: nvim # command that will be executed (nvim will be open)
-        - dir: ~/Desktop
-          placeholder: nvim # command that will not be executed (nvim won't be open)
+        # [optional] pane directory
+        # default: window directory
+        - dir: string
+
+          # [optional] run a command or add a placeholder
+          command: string
+          placeholder: string
 ```
 
 ## Usage
@@ -40,20 +62,6 @@ mux() {
   eval $(jmux $@ -e)
 }
 ```
-
-## Layouts
-
-### Default
-
-![Screen Shot 2022-07-20 at 2 22 07 AM](https://user-images.githubusercontent.com/7513070/179911297-b6754c16-0825-414c-94b2-facd207ae1ca.png)
-
-### Rows
-
-![Screen Shot 2022-07-20 at 2 22 21 AM](https://user-images.githubusercontent.com/7513070/179911303-8b191ba4-de6d-473f-bc94-0a585d5d1148.png)
-
-### Columns
-
-![Screen Shot 2022-07-20 at 2 22 31 AM](https://user-images.githubusercontent.com/7513070/179911314-28eb8ba7-ab9c-4053-88ef-3804048316e5.png)
 
 ## Resources
 
