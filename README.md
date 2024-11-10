@@ -46,7 +46,7 @@ env:
         # default: window directory
         - dir: string
 
-          # [optional] run a command or add a placeholder
+          # [optional] either run a command or add a placeholder
           command: string
           placeholder: string
 ```
