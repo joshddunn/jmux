@@ -13,7 +13,7 @@ program
   .command("ls")
   .description("list configured sessions")
   .option("-f, --file <string>", "configuration file path")
-  .option("-e, --eval", "output valid command for shell eval")
+  .option("-e, --eval", "return command to be run with shell eval")
   .action((options) => {
     const config = getConfig(options.file);
 
@@ -30,7 +30,7 @@ program
   .description("start configured session")
   .argument("<string>", "session name")
   .option("-f, --file <string>", "configuration file path")
-  .option("-e, --eval", "output valid command for shell eval")
+  .option("-e, --eval", "return command to be run with shell eval")
   .action((sessionName, options) => {
     const config = getConfig(options.file);
     const configForSession = config.find((x) => x.name === sessionName);
@@ -50,7 +50,7 @@ program
   .description("stop configured session")
   .argument("<string>", "session name")
   .option("-f, --file <string>", "configuration file path")
-  .option("-e, --eval", "output valid command for shell eval")
+  .option("-e, --eval", "return command to be run with shell eval")
   .action((sessionName, options) => {
     const config = getConfig(options.file);
     const configForSession = config.find((x) => x.name === sessionName);
